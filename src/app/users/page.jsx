@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 
 const Users = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -40,6 +39,7 @@ const Users = () => {
       </Card>
 
       <UserCreateDialog open={createModalOpen} onClose={setCreateModalOpen} />
+      {/* <EditUserInfo open={createModalOpen} onClose={setEditModalOpen} /> */}
     </div>
   );
 };

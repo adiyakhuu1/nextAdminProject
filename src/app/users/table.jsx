@@ -2,7 +2,14 @@
 
 import * as React from "react";
 
-import { Table, TableCell, TableHead, TableHeader, TableRow, TableBody } from "@/components/ui/table";
+import {
+  Table,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableBody,
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -15,8 +22,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MoreHorizontal, Settings } from "lucide-react";
+import { EditUserInfo } from "./edit-userinfo";
+import { useState } from "react";
 
 export function UsersTable(props) {
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const { data } = props;
   return (
     <div className="w-full">
@@ -47,9 +57,9 @@ export function UsersTable(props) {
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                 </TableHead>
-                <TableHead>Нармандах</TableHead>
-                <TableHead>Тэмүүлэн</TableHead>
-                <TableHead>boldoo@gmail.com</TableHead>
+                <TableHead>{item.firstname}</TableHead>
+                <TableHead>{item.lastname}</TableHead>
+                <TableHead>{item.email}</TableHead>
                 <TableHead className="w-1">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -60,11 +70,26 @@ export function UsersTable(props) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => navigator.clipboard.writeText("temkanibno@gmail.com")}>Copy Email</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          navigator.clipboard.writeText("temkanibno@gmail.com")
+                        }>
+                        Copy Email
+                      </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => {
+                          setEditModalOpen(true);
+                        }}>
+                        Edit
+                      </DropdownMenuItem>
+
                       <DropdownMenuItem>Delete</DropdownMenuItem>
                     </DropdownMenuContent>
+                    <EditUserInfo
+                      open={editModalOpen}
+                      onClose={setEditModalOpen}
+                    />
                   </DropdownMenu>
                 </TableHead>
               </TableRow>

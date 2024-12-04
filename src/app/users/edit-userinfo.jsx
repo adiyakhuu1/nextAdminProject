@@ -11,15 +11,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const UserCreateDialog = ({ open, onClose }) => {
+export const EditUserInfo = ({ open, onClose }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   // const [id, setId] = useState("");
 
   async function submit() {
     const res = await fetch("http://localhost:3000/api/users", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({
         firstname: name,
         lastname: lastName,
@@ -36,7 +37,7 @@ export const UserCreateDialog = ({ open, onClose }) => {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create user</DialogTitle>
+          <DialogTitle>Edit User</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           {/* 1 */}
@@ -77,15 +78,15 @@ export const UserCreateDialog = ({ open, onClose }) => {
           </div> */}
           {/* 4 */}
           <div className="grid gap-2">
-            <Label htmlFor="Email">Email</Label>
-            <Input
+            <Label
               onChange={(e) => {
                 setEmail(e.target.value);
                 console.log(email);
               }}
-              id="username"
-              defaultValue=""
-            />
+              htmlFor="Email">
+              Email
+            </Label>
+            <Input id="username" defaultValue="" />
           </div>
           {/* 5 */}
           {/* <div className="grid gap-2">
@@ -102,13 +103,10 @@ export const UserCreateDialog = ({ open, onClose }) => {
           {/* Ends here */}
         </div>
         <DialogFooter>
-          <Button
-            onClick={() => onClose(false)}
-            variant="outline"
-            type="button">
+          <Button variant="outline" type="button">
             Cancel
           </Button>
-          <Button onClick={(submit, () => onClose(false))} type="submit">
+          <Button onClick={submit} type="submit">
             Save
           </Button>
         </DialogFooter>
