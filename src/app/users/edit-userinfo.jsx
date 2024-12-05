@@ -22,6 +22,7 @@ export const EditUserInfo = ({ open, onClose }) => {
     const res = await fetch("http://localhost:3000/api/users", {
       method: "PUT",
       body: JSON.stringify({
+        id,
         firstname: name,
         lastname: lastName,
         email: email,
@@ -83,7 +84,8 @@ export const EditUserInfo = ({ open, onClose }) => {
                 setEmail(e.target.value);
                 console.log(email);
               }}
-              htmlFor="Email">
+              htmlFor="Email"
+            >
               Email
             </Label>
             <Input id="username" defaultValue="" />
