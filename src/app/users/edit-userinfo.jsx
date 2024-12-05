@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const EditUserInfo = ({ open, onClose, id }) => {
+export const EditUserInfo = ({ open, onClose, id, refresh }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   // const [id, setId] = useState("");
@@ -31,6 +31,7 @@ export const EditUserInfo = ({ open, onClose, id }) => {
     const data = await res.json();
     // const response = await theName.json();
     console.log(data);
+    refresh();
   }
 
   return (
@@ -113,8 +114,10 @@ export const EditUserInfo = ({ open, onClose, id }) => {
             onClick={() => {
               submit();
               onClose(false);
+              refresh();
             }}
-            type="submit">
+            type="submit"
+          >
             Save
           </Button>
         </DialogFooter>

@@ -76,7 +76,8 @@ export function UsersTable(props) {
                       <DropdownMenuItem
                         onClick={() =>
                           navigator.clipboard.writeText(item.email)
-                        }>
+                        }
+                      >
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -84,7 +85,8 @@ export function UsersTable(props) {
                         onClick={() => {
                           changSelected(item.id);
                           setEditModalOpen(true);
-                        }}>
+                        }}
+                      >
                         Edit
                       </DropdownMenuItem>
 
@@ -93,7 +95,10 @@ export function UsersTable(props) {
                           await fetch(`/api/users/${item.id}`, {
                             method: "DELETE",
                           });
-                        }}>
+                          props.refresh();
+                          // props.setNext(next - 2);
+                        }}
+                      >
                         Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -105,6 +110,7 @@ export function UsersTable(props) {
               open={editModalOpen}
               onClose={setEditModalOpen}
               id={selected}
+              refresh={props.refresh}
             />
           </TableBody>
         </Table>

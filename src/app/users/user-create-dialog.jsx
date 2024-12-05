@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const UserCreateDialog = ({ open, onClose }) => {
+export const UserCreateDialog = ({ open, onClose, refresh }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +30,7 @@ export const UserCreateDialog = ({ open, onClose }) => {
     const data = await res.json();
     // const response = await theName.json();
     console.log(data);
+    refresh();
   }
 
   return (
@@ -105,7 +106,8 @@ export const UserCreateDialog = ({ open, onClose }) => {
           <Button
             onClick={() => onClose(false)}
             variant="outline"
-            type="button">
+            type="button"
+          >
             Cancel
           </Button>
           <Button
@@ -113,7 +115,8 @@ export const UserCreateDialog = ({ open, onClose }) => {
               submit();
               onClose(false);
             }}
-            type="submit">
+            type="submit"
+          >
             Save
           </Button>
         </DialogFooter>

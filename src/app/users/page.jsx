@@ -20,6 +20,14 @@ const Users = () => {
       });
   }, []);
 
+  const refreshUsers = () => {
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  };
+
   return (
     <div>
       <Card>
@@ -32,20 +40,30 @@ const Users = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <UsersTable data={data} next={next} />
+          <UsersTable
+            refresh={refreshUsers}
+            data={data}
+            next={next}
+            setNext={setNext}
+          />
           <div className="flex justify-center p-8">
             <Button
               onClick={() => {
                 setNext(next + 10);
               }}
-              variant="outline">
+              variant="outline"
+            >
               Load more...
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      <UserCreateDialog open={createModalOpen} onClose={setCreateModalOpen} />
+      <UserCreateDialog
+        open={createModalOpen}
+        onClose={setCreateModalOpen}
+        refresh={refreshUsers}
+      />
       {/* <EditUserInfo open={createModalOpen} onClose={setEditModalOpen} /> */}
     </div>
   );
