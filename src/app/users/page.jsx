@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const Users = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [next, setNext] = useState(0);
 
   useEffect(() => {
     fetch("/api/users")
@@ -31,9 +32,15 @@ const Users = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <UsersTable data={data} />
+          <UsersTable data={data} next={next} />
           <div className="flex justify-center p-8">
-            <Button variant="outline">Load more...</Button>
+            <Button
+              onClick={() => {
+                setNext(next + 10);
+              }}
+              variant="outline">
+              Load more...
+            </Button>
           </div>
         </CardContent>
       </Card>

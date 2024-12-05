@@ -30,6 +30,7 @@ export function UsersTable(props) {
 
   const { data } = props;
   const [selected, changSelected] = useState("");
+  let next = props.next;
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -50,7 +51,7 @@ export function UsersTable(props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.slice(0, 10).map((item, index) => (
+            {data?.slice(0, next + 10).map((item, index) => (
               <TableRow key={item.id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableHead>
