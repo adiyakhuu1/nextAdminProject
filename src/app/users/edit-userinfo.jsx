@@ -11,18 +11,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const EditUserInfo = ({ open, onClose }) => {
+export const EditUserInfo = ({ open, onClose, id }) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   // const [id, setId] = useState("");
 
   async function submit() {
-    const res = await fetch("http://localhost:3000/api/users", {
+    const res = await fetch(`/api/users/${id}`, {
       method: "PUT",
       body: JSON.stringify({
-        id,
         firstname: name,
         lastname: lastName,
         email: email,
@@ -45,6 +44,7 @@ export const EditUserInfo = ({ open, onClose }) => {
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
             <Input
+              value={name}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -57,6 +57,7 @@ export const EditUserInfo = ({ open, onClose }) => {
           <div className="grid gap-2">
             <Label htmlFor="Lastname">Last Name</Label>
             <Input
+              value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
                 console.log(lastName);
@@ -79,16 +80,16 @@ export const EditUserInfo = ({ open, onClose }) => {
           </div> */}
           {/* 4 */}
           <div className="grid gap-2">
-            <Label
+            <Label htmlFor="Email">Email</Label>
+            <Input
+              value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
                 console.log(email);
               }}
-              htmlFor="Email"
-            >
-              Email
-            </Label>
-            <Input id="username" defaultValue="" />
+              id="username"
+              defaultValue=""
+            />
           </div>
           {/* 5 */}
           {/* <div className="grid gap-2">
@@ -108,7 +109,12 @@ export const EditUserInfo = ({ open, onClose }) => {
           <Button variant="outline" type="button">
             Cancel
           </Button>
-          <Button onClick={submit} type="submit">
+          <Button
+            onClick={() => {
+              submit();
+              onClose(false);
+            }}
+            type="submit">
             Save
           </Button>
         </DialogFooter>

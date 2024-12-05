@@ -18,7 +18,7 @@ export const UserCreateDialog = ({ open, onClose }) => {
   // const [id, setId] = useState("");
 
   async function submit() {
-    const res = await fetch("http://localhost:3000/api/users", {
+    const res = await fetch("/api/users", {
       method: "POST",
       body: JSON.stringify({
         firstname: name,
@@ -108,7 +108,12 @@ export const UserCreateDialog = ({ open, onClose }) => {
             type="button">
             Cancel
           </Button>
-          <Button onClick={(submit, () => onClose(false))} type="submit">
+          <Button
+            onClick={() => {
+              submit();
+              onClose(false);
+            }}
+            type="submit">
             Save
           </Button>
         </DialogFooter>

@@ -27,7 +27,9 @@ import { useState } from "react";
 
 export function UsersTable(props) {
   const [editModalOpen, setEditModalOpen] = useState(false);
+
   const { data } = props;
+  const [selected, changSelected] = useState("");
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -72,28 +74,37 @@ export function UsersTable(props) {
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuItem
                         onClick={() =>
-                          navigator.clipboard.writeText("temkanibno@gmail.com")
+                          navigator.clipboard.writeText(item.email)
                         }>
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={() => {
+                          changSelected(item.id);
                           setEditModalOpen(true);
                         }}>
                         Edit
                       </DropdownMenuItem>
 
-                      <DropdownMenuItem>Delete</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={async () => {
+                          await fetch(`/api/users/${item.id}`, {
+                            method: "DELETE",
+                          });
+                        }}>
+                        Delete
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
-                    <EditUserInfo
-                      open={editModalOpen}
-                      onClose={setEditModalOpen}
-                    />
                   </DropdownMenu>
                 </TableHead>
               </TableRow>
             ))}
+            <EditUserInfo
+              open={editModalOpen}
+              onClose={setEditModalOpen}
+              id={selected}
+            />
           </TableBody>
         </Table>
       </div>
