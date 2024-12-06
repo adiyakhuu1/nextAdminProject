@@ -27,14 +27,26 @@ import { useState } from "react";
 
 export function UsersTable(props) {
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [searchUser, setSearch] = useState("");
 
   const { data } = props;
   const [selected, changSelected] = useState("");
   let next = props.next;
+  let filteredUser = data?.filter((user) => {
+    user.firstname.includes(searchUser);
+  });
+  console.log(filteredUser);
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <Input placeholder="Нэрээр хайх..." className="max-w-sm" />
+        <Input
+          onChange={(e) => {
+            setSearch(e.target.value);
+            console.log(searchUser);
+          }}
+          placeholder="Нэрээр хайх..."
+          className="max-w-sm"
+        />
       </div>
       <div className="border rounded-md">
         <Table>
@@ -51,7 +63,7 @@ export function UsersTable(props) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.slice(0, next + 10).map((item, index) => (
+            {filteredUser?.slice(0, next + 10).map((item, index) => (
               <TableRow key={item.id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableHead>
@@ -76,8 +88,7 @@ export function UsersTable(props) {
                       <DropdownMenuItem
                         onClick={() =>
                           navigator.clipboard.writeText(item.email)
-                        }
-                      >
+                        }>
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -85,8 +96,7 @@ export function UsersTable(props) {
                         onClick={() => {
                           changSelected(item.id);
                           setEditModalOpen(true);
-                        }}
-                      >
+                        }}>
                         Edit
                       </DropdownMenuItem>
 
@@ -97,8 +107,7 @@ export function UsersTable(props) {
                           });
                           props.refresh();
                           // props.setNext(next - 2);
-                        }}
-                      >
+                        }}>
                         Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>
