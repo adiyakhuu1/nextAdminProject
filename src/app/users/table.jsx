@@ -32,9 +32,10 @@ export function UsersTable(props) {
   const { data } = props;
   const [selected, changSelected] = useState("");
   let next = props.next;
-  let filteredUser = data?.filter((user) => {
-    user.firstname.includes(searchUser);
-  });
+  const filteredUser = data?.filter((user) =>
+    user.firstname.includes(searchUser)
+  );
+
   console.log(filteredUser);
   return (
     <div className="w-full">
