@@ -11,7 +11,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const EditUserInfo = ({ open, onClose, id, refresh }) => {
+export const EditUserInfo = ({
+  open,
+  onClose,
+  id,
+  refresh,
+  sendName,
+  sendEmail,
+  sendLastName,
+}) => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   // const [id, setId] = useState("");
@@ -45,26 +53,24 @@ export const EditUserInfo = ({ open, onClose, id, refresh }) => {
           <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
             <Input
-              value={name}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
               }}
               id="name"
-              defaultValue="Name"
+              defaultValue={sendName}
             />
           </div>
           {/* 2 */}
           <div className="grid gap-2">
             <Label htmlFor="Lastname">Last Name</Label>
             <Input
-              value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
                 console.log(lastName);
               }}
               id="username"
-              defaultValue=""
+              defaultValue={sendLastName}
             />
           </div>
           {/* 3 */}
@@ -83,13 +89,12 @@ export const EditUserInfo = ({ open, onClose, id, refresh }) => {
           <div className="grid gap-2">
             <Label htmlFor="Email">Email</Label>
             <Input
-              value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
                 console.log(email);
               }}
               id="username"
-              defaultValue=""
+              defaultValue={sendEmail}
             />
           </div>
           {/* 5 */}

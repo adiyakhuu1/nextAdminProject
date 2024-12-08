@@ -49,7 +49,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(name);
               }}
               id="name"
-              defaultValue="Name"
+              defaultValue={name}
             />
           </div>
           {/* 2 */}
@@ -61,7 +61,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(lastName);
               }}
               id="username"
-              defaultValue=""
+              defaultValue={lastName}
             />
           </div>
           {/* 3 */}
@@ -85,7 +85,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(email);
               }}
               id="username"
-              defaultValue=""
+              defaultValue={email}
             />
           </div>
           {/* 5 */}

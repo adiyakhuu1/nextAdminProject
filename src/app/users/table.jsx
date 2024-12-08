@@ -28,6 +28,9 @@ import { useState } from "react";
 export function UsersTable(props) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [searchUser, setSearch] = useState("");
+  const [currentName, setCurrentName] = useState("");
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [currentLastName, setCurrentLastName] = useState("");
 
   const { data } = props;
   const [selected, changSelected] = useState("");
@@ -89,7 +92,8 @@ export function UsersTable(props) {
                       <DropdownMenuItem
                         onClick={() =>
                           navigator.clipboard.writeText(item.email)
-                        }>
+                        }
+                      >
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -97,7 +101,11 @@ export function UsersTable(props) {
                         onClick={() => {
                           changSelected(item.id);
                           setEditModalOpen(true);
-                        }}>
+                          setCurrentEmail(item.email);
+                          setCurrentLastName(item.lastname);
+                          setCurrentName(item.firstname);
+                        }}
+                      >
                         Edit
                       </DropdownMenuItem>
 
@@ -108,7 +116,8 @@ export function UsersTable(props) {
                           });
                           props.refresh();
                           // props.setNext(next - 2);
-                        }}>
+                        }}
+                      >
                         Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -121,6 +130,9 @@ export function UsersTable(props) {
               onClose={setEditModalOpen}
               id={selected}
               refresh={props.refresh}
+              sendName={currentName}
+              sendEmail={currentEmail}
+              sendLastName={currentLastName}
             />
           </TableBody>
         </Table>
