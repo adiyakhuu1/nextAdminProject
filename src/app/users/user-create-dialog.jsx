@@ -16,6 +16,9 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   // const [id, setId] = useState("");
+  const randomNumber = () => {
+    return Math.floor(Math.random() * 1541451);
+  };
 
   async function submit() {
     const res = await fetch("/api/users", {
@@ -24,6 +27,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
         firstname: name,
         lastname: lastName,
         email: email,
+        imageUrl: `https://avatar.iran.liara.run/public/${randomNumber()}`,
       }),
     });
     const data = await res.json();

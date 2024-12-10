@@ -120,7 +120,8 @@ export const EditUserInfo = ({
               onClose(false);
               refresh();
             }}
-            type="submit">
+            type="submit"
+          >
             Save
           </Button>
         </DialogFooter>

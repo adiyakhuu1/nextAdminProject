@@ -6,7 +6,6 @@ import { TypographyH3 } from "@/components/typography/h3";
 import { UsersTable } from "./table";
 import { UserCreateDialog } from "./user-create-dialog";
 import { useEffect, useState } from "react";
-import { TheDetails } from "./details";
 
 const Users = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -18,6 +17,7 @@ const Users = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
+        // console.log(data);
       });
   }, []);
 
@@ -26,6 +26,7 @@ const Users = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
+        // console.log("refreshed data", data);
       });
   };
 
