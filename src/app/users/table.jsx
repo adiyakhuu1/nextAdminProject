@@ -65,6 +65,8 @@ export function UsersTable(props) {
               <TableHead className="w-1">Овог</TableHead>
               <TableHead>Нэр</TableHead>
               <TableHead>И-Мэйл</TableHead>
+              <TableHead></TableHead>
+              <TableHead></TableHead>
               <TableHead className="w-1">
                 <Settings />
               </TableHead>
@@ -91,7 +93,8 @@ export function UsersTable(props) {
                         setCurrentName(item.firstname);
                         setCurrentLastName(item.lastname);
                         setCurrentEmail(item.email);
-                      }}>
+                      }}
+                    >
                       Details
                     </button>
                   </Link>
@@ -111,7 +114,8 @@ export function UsersTable(props) {
                       <DropdownMenuItem
                         onClick={() =>
                           navigator.clipboard.writeText(item.email)
-                        }>
+                        }
+                      >
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -122,7 +126,8 @@ export function UsersTable(props) {
                           setCurrentEmail(item.email);
                           setCurrentLastName(item.lastname);
                           setCurrentName(item.firstname);
-                        }}>
+                        }}
+                      >
                         Edit
                       </DropdownMenuItem>
 
@@ -133,7 +138,8 @@ export function UsersTable(props) {
                           });
                           props.refresh();
                           // props.setNext(next - 2);
-                        }}>
+                        }}
+                      >
                         Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>

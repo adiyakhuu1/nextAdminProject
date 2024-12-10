@@ -105,15 +105,18 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
           <Button
             onClick={() => onClose(false)}
             variant="outline"
-            type="button">
+            type="button"
+          >
             Cancel
           </Button>
           <Button
             onClick={() => {
               submit();
               onClose(false);
+              refresh();
             }}
-            type="submit">
+            type="submit"
+          >
             Save
           </Button>
         </DialogFooter>

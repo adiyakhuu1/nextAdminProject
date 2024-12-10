@@ -1,17 +1,21 @@
-// "use client";
+"use client";
 
 import React, { useEffect } from "react";
 
-function MyComponent() {
-  useEffect(() => {
-    console.log("Component mounted!");
-
-    return () => {
-      console.log("Component unmounted! Perform cleanup here.");
-    };
-  }, []); // Runs once on mount, and cleanup happens on unmount.
-
-  return <div>{console.log("goodbye world")}Goodbye, world!</div>;
+function App() {
+  const pics = async () => {
+    const pic = await fetch(
+      `https://randomuser.me/api/portraits/med/men/4.jpg`
+    );
+    const response = await pic.json();
+    console.log(response);
+  };
+  return (
+    <div>
+      <button onClick={pics} style={{ width: 200, height: 50 }}>
+        sdjkfghniusrdtgsdrgtui
+      </button>
+    </div>
+  );
 }
-
-export default MyComponent;
+export default App;

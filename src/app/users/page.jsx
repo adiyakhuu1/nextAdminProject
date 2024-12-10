@@ -7,7 +7,6 @@ import { UsersTable } from "./table";
 import { UserCreateDialog } from "./user-create-dialog";
 import { useEffect, useState } from "react";
 import { TheDetails } from "./details";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Users = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -52,8 +51,10 @@ const Users = () => {
             <Button
               onClick={() => {
                 setNext(next + 10);
+                refreshUsers();
               }}
-              variant="outline">
+              variant="outline"
+            >
               Load more...
             </Button>
           </div>
