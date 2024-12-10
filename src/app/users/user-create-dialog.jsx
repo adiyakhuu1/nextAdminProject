@@ -24,7 +24,6 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
         firstname: name,
         lastname: lastName,
         email: email,
-        imageUrl: "http://dummyimage.com/182x220.png/ff4444/ffffff",
       }),
     });
     const data = await res.json();
@@ -106,8 +105,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
           <Button
             onClick={() => onClose(false)}
             variant="outline"
-            type="button"
-          >
+            type="button">
             Cancel
           </Button>
           <Button
@@ -115,8 +113,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
               submit();
               onClose(false);
             }}
-            type="submit"
-          >
+            type="submit">
             Save
           </Button>
         </DialogFooter>

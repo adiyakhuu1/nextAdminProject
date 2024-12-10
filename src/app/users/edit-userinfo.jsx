@@ -33,7 +33,6 @@ export const EditUserInfo = ({
         firstname: name,
         lastname: lastName,
         email: email,
-        imageUrl: "http://dummyimage.com/182x220.png/ff4444/ffffff",
       }),
     });
     const data = await res.json();
@@ -121,8 +120,7 @@ export const EditUserInfo = ({
               onClose(false);
               refresh();
             }}
-            type="submit"
-          >
+            type="submit">
             Save
           </Button>
         </DialogFooter>

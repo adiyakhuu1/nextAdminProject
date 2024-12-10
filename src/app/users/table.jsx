@@ -21,12 +21,16 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MoreHorizontal, Settings } from "lucide-react";
+import { MoreHorizontal, Route, Settings } from "lucide-react";
 import { EditUserInfo } from "./edit-userinfo";
 import { useState } from "react";
+import { TheDetails } from "./details";
+import Link from "next/link";
 
 export function UsersTable(props) {
   const [editModalOpen, setEditModalOpen] = useState(false);
+  // const [seeDetailsRoute, setseeDetailsRoute] = useState(false);
+  const [seeDetails, setseeDetails] = useState(false);
   const [searchUser, setSearch] = useState("");
   const [currentName, setCurrentName] = useState("");
   const [currentEmail, setCurrentEmail] = useState("");
@@ -79,6 +83,21 @@ export function UsersTable(props) {
                 <TableHead>{item.firstname}</TableHead>
                 <TableHead>{item.lastname}</TableHead>
                 <TableHead>{item.email}</TableHead>
+                <TableHead>
+                  <Link href={`/users/${item.id}`}>
+                    <button
+                      onClick={() => {
+                        setseeDetails(true);
+                        setCurrentName(item.firstname);
+                        setCurrentLastName(item.lastname);
+                        setCurrentEmail(item.email);
+                      }}>
+                      Details
+                    </button>
+                  </Link>
+                </TableHead>
+
+                <TableHead></TableHead>
                 <TableHead className="w-1">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -92,8 +111,7 @@ export function UsersTable(props) {
                       <DropdownMenuItem
                         onClick={() =>
                           navigator.clipboard.writeText(item.email)
-                        }
-                      >
+                        }>
                         Copy Email
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
@@ -104,8 +122,7 @@ export function UsersTable(props) {
                           setCurrentEmail(item.email);
                           setCurrentLastName(item.lastname);
                           setCurrentName(item.firstname);
-                        }}
-                      >
+                        }}>
                         Edit
                       </DropdownMenuItem>
 
@@ -116,8 +133,7 @@ export function UsersTable(props) {
                           });
                           props.refresh();
                           // props.setNext(next - 2);
-                        }}
-                      >
+                        }}>
                         Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>
