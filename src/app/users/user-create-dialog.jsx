@@ -17,7 +17,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
   const [email, setEmail] = useState("");
   // const [id, setId] = useState("");
   const randomNumber = () => {
-    return Math.floor(Math.random() * 1541451);
+    return Math.floor(Math.random() * 100);
   };
 
   async function submit() {
@@ -52,7 +52,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(name);
               }}
               id="name"
-              defaultValue={name}
+              defaultValue=""
             />
           </div>
           {/* 2 */}
@@ -64,7 +64,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(lastName);
               }}
               id="username"
-              defaultValue={lastName}
+              defaultValue=""
             />
           </div>
           {/* 3 */}
@@ -88,7 +88,7 @@ export const UserCreateDialog = ({ open, onClose, refresh }) => {
                 console.log(email);
               }}
               id="username"
-              defaultValue={email}
+              defaultValue=""
             />
           </div>
           {/* 5 */}
